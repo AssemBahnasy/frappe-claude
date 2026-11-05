@@ -32,7 +32,10 @@ and CRM). Breaks are not counted.
 | 41 or more | Two, in most sections | Six or more; usually ten or more | Yes, four or more |
 
 A section has one or two columns; three when its fields are short and belong side by side; more
-is rare. A column usually holds two to six fields. Keep columns of a section roughly even.
+is rare. A column usually holds two to four fields. Keep columns of a section roughly even.
+
+The form follows `field_order`, not the order of the `fields` list, and the two often differ: read
+`field_order` when studying a DocType (`frappe/model/meta.py: sort_fields`).
 
 ## Where each field goes
 
