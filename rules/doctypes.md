@@ -43,4 +43,4 @@ paths:
 ## Before creating a DocType
 
 Propose it first: name, app and module, naming, a fields table (fieldname, type, options, reqd),
-permissions. Build it only once the user approves.
+the form's layout ([doctype-layout.md](doctype-layout.md)), permissions. Build it only once the user approves.

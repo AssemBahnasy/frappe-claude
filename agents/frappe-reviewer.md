@@ -26,6 +26,8 @@ You do not edit files.
    - `ignore_permissions`, raw SQL from input, `frappe.db.commit()` in a request;
    - a link to a DocType of an app that is not required or not installed, or a cross-app link or
      import not in the project's agreed table;
+   - a form that breaks `rules/doctype-layout.md`: more than three fields in one column with no
+     reason, sections with no single topic, a table with a column break beside it;
    - a hand-edited DocType/workspace/sidebar JSON whose `modified` was not bumped;
    - user-facing strings without `_()` / `__()`, or `.po` entries left empty;
    - form scripts with module-level state or functions;

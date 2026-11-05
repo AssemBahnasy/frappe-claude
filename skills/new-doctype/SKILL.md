@@ -6,7 +6,7 @@ argument-hint: "<app> <DocType Name>"
 
 # New DocType
 
-Read first: `~/.claude/rules/frappe/doctypes.md` and the project's rules (which app it belongs to).
+Read first: `~/.claude/rules/frappe/doctypes.md`, `~/.claude/rules/frappe/doctype-layout.md` and the project's rules (which app it belongs to).
 
 ## 1. Propose and wait for approval
 
@@ -17,7 +17,9 @@ Write the proposal in chat:
 - naming rule (series `PREFIX-.YYYY.-.#####`, `field:<code>`, ...);
 - a fields table: fieldname | label | type | options | reqd | in list / filter;
 - permissions: role → read / write / create / submit / cancel / delete;
-- links to other DocTypes and which app owns them.
+- links to other DocTypes and which app owns them;
+- two or three similar DocTypes in Frappe, ERPNext, HRMS or CRM whose pattern it follows;
+- a sketch of the form: tabs, sections and columns, with each field in its place.
 
 Do not create anything until the user approves.
 

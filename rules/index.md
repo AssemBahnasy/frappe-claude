@@ -28,8 +28,10 @@ from these rules, the project wins.** If a project has none, ask for what the ta
 
 - **Frappe's way.** Follow the layout and style of Frappe, ERPNext, HRMS and CRM; check every
   mechanism in Frappe's source before relying on it.
-- **Propose, then build.** New DocTypes, cross-app links and screens are proposed (fields table
-  or mockup) and approved first.
+- **Propose, then build.** New DocTypes, cross-app links and screens are proposed (fields table,
+  the form's layout, or mockup) and approved first.
+- **Forms are designed.** Check how Frappe's apps lay out similar DocTypes; organise fields into
+  tabs, sections and columns by logic, never one long column.
 - **Right app, right direction.** Shared masters live in a suite's core app; apps link only in
   agreed directions, never in a cycle.
 - **Separation of concerns and DRY.** UI → endpoints (`api/`, access and inputs only) →
@@ -59,6 +61,7 @@ from these rules, the project wins.** If a project has none, ask for what the ta
 | [python.md](python.md) | Python style and code layout | `*.py` |
 | [form-scripts.md](form-scripts.md) | Form scripts, bundles, Vue | `*.js`, `*.vue` |
 | [doctypes.md](doctypes.md) | DocType design, `modified`, naming, permissions | `doctype/`, `report/`, `workspace/`, `sidebar/`, `dock/` |
+| [doctype-layout.md](doctype-layout.md) | Tabs, sections and columns of a DocType's form | `doctype/` |
 | [api.md](api.md) | Whitelisted endpoints, `hooks.py` | `api/`, `hooks.py` |
 
 ## Recipes and agents
