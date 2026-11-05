@@ -28,9 +28,22 @@ unclear, do what those apps do.
 
 ## Global names
 
-A DocType name is global on a site, and Frappe gives no error on a clash. On migrate, a second
-app's DocType of the same name deletes and replaces the first (`frappe/modules/import_file.py:
-import_doc`, `delete_old_doc`). Check a new name against the apps the site will run.
+Anything that touches a global validation (a name that must be unique across the bench or the
+site) is checked in Frappe's source before it is chosen, never assumed. Frappe rarely refuses a
+clash; usually one side silently wins. Check a new name against the apps on the bench and the
+site. Verified on v16.54:
+
+| Name | Unique across | On a clash |
+|---|---|---|
+| Module (`modules.txt`, compared scrubbed) | The site, and the bench | Installing a second app with the module on the same site raises `DuplicateEntryError` (`installer.py: add_module_defs`); `--force` skips it and the row stays with the first app. Across a bench it only warns, and in bench commands the app read last takes the module, so the other's DocTypes resolve to the wrong folder (`__init__.py: setup_module_map`; requests, jobs and migrate map installed apps only). A site's custom module is renamed out of the way (`rename_conflicting_custom_module`) |
+| DocType | The site | No error: each migrate deletes and replaces it with the other app's (`modules/import_file.py: import_doc`, `delete_old_doc`). Two apps may share a name on one bench, never on one site |
+| Page, Report, Workspace, Sidebar, Print Format, other synced records | The site | No error: the same import, but the file with the newer `modified` replaces the other (`import_file_by_path`) |
+| Role | The site | No error: the apps share it. A role a DocType names is created with `desk_access = 1` if missing (`doctype.py: make_module_and_roles`), so whichever app creates it first decides |
+| `www/` page path | The site | No error: the app installed last wins (`website/page_renderers/template_page.py: set_template_path`) |
+| `website_route_rules` route | The site | No error: Werkzeug picks one (`website/router.py: evaluate_dynamic_routes`); never rely on which |
+| Bundle file name | The bench, across all its sites (`sites/assets/assets.json`) | No error: the later entry overwrites (`esbuild/esbuild.js: update_assets_obj`). Name them `<app>_<feature>.bundle.js` |
+
+For any other global name, find where Frappe validates it and cite that function.
 
 ## Things v16 does differently
 
