@@ -84,13 +84,13 @@ Not verified yet, inferred from the shadow root and the head contract:
 - Leaflet's stylesheet must be adopted into the shadow root. `@framework/ui` lists `leaflet`
   as a dependency; whether it ships a map component is unchecked.
 
-## Fit by page kind (examples from naqel and butler)
+## Fit by page kind
 
-| Page kind | Examples | Fit |
-|---|---|---|
-| Dashboards | Operation Dashboard, Service Dashboard | good: scaffolded page, frappe-ui charts (`frappe.ui.chart`, decision 0016) |
-| Builders and editors | Facility Builder, Service Setup | poor for now: no Save action, dirty indicator or Ctrl+S in the contract; vue-konva needs an app frontend |
-| Map workspaces | Regional Divisions, Operational Route | open: Leaflet CSS in the shadow root, map component unchecked |
+| Page kind | Fit |
+|---|---|
+| Dashboards | Good: scaffolded page, frappe-ui charts (`frappe.ui.chart`) |
+| Builders and editors | Poor for now: no Save action, dirty indicator or Ctrl+S in the contract; vue-konva needs an app frontend |
+| Map workspaces | Open: Leaflet CSS in the shadow root, map component unchecked |
 
 When v17 nears, port the dashboards first. Re-check the contract for a primary action before
 porting a builder.

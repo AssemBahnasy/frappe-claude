@@ -18,8 +18,7 @@ Every shape takes one of two fills, never a hex colour:
 | dark | the detail: what it *does*, and what usually moves | `var(--duotone-dark, var(--<p>-…))` |
 
 Copy the exact `--<p>-…` fallback names from the sprite's `:root` block. They differ per app,
-for example `--naqel-green`/`--naqel-ink`, `--naqel-green-light`/`--naqel-green-dark`, and
-`--butler-tan`/`--butler-ink`. A stroke uses
+for example `--<app>-green`/`--<app>-ink` and `--<app>-green-light`/`--<app>-green-dark`. A stroke uses
 `fill: none; stroke: var(--duotone-dark, …)`.
 
 Aim for roughly 60–70% light area and 30–40% dark. An all-dark icon looks heavy in the dock,
@@ -43,22 +42,15 @@ Rules the checker enforces or that bite at runtime:
    their own `<g>`.
 5. **Hover-only shapes** (rings, rays) use `opacity: var(--icon-motion-opacity, 0)`.
    Transitions (the door) use `calc(... * var(--icon-motion-opacity, 0))`.
-6. Prefix every class and `@keyframes` name with the app (`naqel-lid`). The style block is a
+6. Prefix every class and `@keyframes` name with the app (`<app>-lid`). The style block is a
    document stylesheet shared by every app's sprite.
 7. Never put `--` inside an `<!-- comment -->`. It breaks XML, although the desk's HTML parser
    tolerates it.
 
 ## Reuse before drawing
 
-Sprites already drawn in other benches (read-only references; copy symbols, never edit them there):
-
-| App | Sprite |
-|---|---|
-| naqel | `~/frappe-bench/apps/naqel/naqel/public/icons/module-icons.svg` (47, waste domain: container lid, truck, collection drop, recycle, route, inspection, wrench, calendar, coins, id-card, bag into skip, waste bag…) |
-| pestcontrol | `~/frappe-bench/apps/pestcontrol/pestcontrol/public/icons/module-icons.svg` (17: field service, visits, chemicals…) |
-| butler | `~/frappe-bench/apps/butler/butler/public/icons/module-icons.svg` (16: smart home, bundle, light bulb, amenity…) |
-| waqf | `~/frappe-bench/apps/waqf/waqf/public/icons/module-icons.svg` (16: tree, beneficiary heart, scales, key…) |
-| frappe_intelligence | `<bench>/apps/frappe_intelligence/frappe_intelligence/public/icons/module-icons.svg` (13: home, analytics, workflows, documents, setup…) |
+Sprites already drawn in other apps are read-only references; copy symbols, never edit them there.
+Find them with `find ~ -path '*/apps/*/public/icons/module-icons.svg' -not -path '*/node_modules/*'`.
 
 Within a suite, check its other apps' sprites first, so they share one look.
 

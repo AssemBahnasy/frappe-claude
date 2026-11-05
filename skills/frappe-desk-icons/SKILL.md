@@ -1,6 +1,6 @@
 ---
 name: frappe-desk-icons
-description: Create or change an app's animated dual-tone desk icons for Frappe v16's dock, sidebars and workspaces (the module-icons.svg sprite pattern used by naqel, butler, waqf and frappe_intelligence). Use when asked for a new icon ("add a workshop icon", "an icon for waste containers"), to replace stock or ERPNext icons in an app's dock or sidebar with custom ones, to recolour or animate desk icons, or to start a sprite for an app that has none. Not for the apps-screen tile, which stays the app's original logo file.
+description: Create or change an app's animated dual-tone desk icons for Frappe v16's dock, sidebars and workspaces (the module-icons.svg sprite pattern). Use when asked for a new icon ("add a workshop icon", "an icon for containers"), to replace stock or ERPNext icons in an app's dock or sidebar with custom ones, to recolour or animate desk icons, or to start a sprite for an app that has none. Not for the apps-screen tile, which stays the app's original logo file.
 ---
 
 # Desk icons for a Frappe app

@@ -8,14 +8,11 @@ argument-hint: "<app> [init | doctype <DocType> | feature <name> | audit]"
 
 Read first: `~/.claude/rules/frappe/docs.md` (layout, what a change updates) and
 `architecture.md` (what separation-of-concerns docs must say). Templates:
-[references/templates.md](references/templates.md). Good examples on other benches (read only):
-`~/frappe-bench/apps/naqel/docs/` (architecture/, modules/) and
-`<bench>/apps/frappe_intelligence/frappe_intelligence/docs/` (overview/, guidelines/).
+[references/templates.md](references/templates.md).
 
 **Always split by concern** (`rules/docs.md`, "Separation of concerns applies to docs"): a topic
 is a folder with an index `README.md` and one short file per concern, under about 60 lines each.
-Do this by default; the user should never need to ask. Take structure from the examples, not
-length (some of naqel's files are longer than this allows).
+Do this by default; the user should never need to ask.
 
 ## Plan before writing
 

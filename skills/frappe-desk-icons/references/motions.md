@@ -1,13 +1,13 @@
 # Motion patterns
 
-Every block below is taken from a shipped sprite (naqel/naqel), with the prefix written as `p`.
+Every block below is taken from a shipped sprite, with the prefix written as `p`.
 Rename `p-` to the app's prefix. Each keyframe's `0%` is the resting pose.
 
 | Pattern | Story | Used by |
 |---|---|---|
 | lid | a lid lifts on a hinge | container |
 | drop | something drops in and fades, then reappears | collection, mark |
-| sway | hangs and swings from a point | waste bag |
+| sway | hangs and swings from a point | hanging bag |
 | hop | a pin or object hops | pin, map, briefcase |
 | march | dashes walk along a path | route |
 | drive + speed | a vehicle rocks while speed lines stream | truck |
@@ -107,4 +107,3 @@ Rename `p-` to the app's prefix. Each keyframe's `0%` is the resting pose.
 	transform: scaleX(calc(1 - 0.7 * var(--icon-motion-opacity, 0))); transition: transform 0.3s ease; }
 ```
 
-The knob, coin and nod blocks are in naqel's sprite under the same names.

@@ -31,8 +31,8 @@ grep -rn "<name>" frappe/public/js | head
 
 ## Patterns from other Frappe apps (read only)
 
-`~/frappe-bench/apps/` has `erpnext`, `hrms`, `crm` (if present) and earlier custom apps
-(`naqel`, `pestcontrol`). Read them for how a problem is
+`~/frappe-bench/apps/` has `erpnext`, `hrms`, `crm` (if present) and earlier custom apps.
+Read them for how a problem is
 usually solved; never import from them, and never edit them.
 
 ## Record what you found
