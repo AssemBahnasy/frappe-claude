@@ -13,7 +13,7 @@ pages `profile`, `search` and `notifications` (`frappe/desk/page/`) are working 
 
 - An island is one ES module that exports `mount(el, context)`. Its name is its
   `<name>.island.js` / `<name>.island.css` key in `assets.json`. Names share one bench-wide
-  namespace, so prefix them with the app (decision 0014).
+  namespace, so prefix them with the app.
 - `mountVueIsland` (`@framework/ui/island`) opens the shadow root, adopts the stylesheet,
   mirrors the desk theme and calls `SetVueGlobals`, so `__()` and `frappe` still work.
 - Desk mounts one with `frappe.ui.mount_island(name, el, props)`. A frappe-ui app mounts the
