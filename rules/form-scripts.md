@@ -8,6 +8,7 @@ paths:
 
 Written the way ERPNext and Frappe core write them:
 
+- Comments are brief: two sentences at most, saying *why*, never a paragraph.
 - Every handler and helper is a method inside `frappe.ui.form.on("DocType", {...})`. A field
   event calls `frm.trigger("...")`; helpers are called as `frm.events.helper(frm, ...)`.
 - Per-form state lives on `frm`. No module-level functions, caches or mutable state.

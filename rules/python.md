@@ -9,7 +9,8 @@ paths:
   `pyproject.toml`). Lint only what you changed: `ruff check <files> && ruff format <files>`.
 - Type hints on public functions and whitelisted endpoints (Frappe validates whitelisted
   argument types).
-- Short docstrings that say *why*; no comment that restates the code.
+- Docstrings and comments are brief: **two sentences at most**, saying *why*, never a paragraph. No
+  comment that restates the code; a longer explanation belongs in the app's `docs/`.
 - User-facing text through `_()` (or `_lt()` at import time); `frappe.throw(_("..."))` for
   validation errors, with `title=` when it helps.
 - No `print`; use `frappe.logger("<app>")` or `frappe.log_error` for failures worth keeping.
