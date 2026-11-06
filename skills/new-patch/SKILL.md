@@ -26,6 +26,12 @@ instead.
    - **Idempotent**: safe to run twice; check before changing.
    - Bulk updates with `frappe.qb` / `frappe.db.set_value` over loops of `doc.save()` when no
      controller logic must run; use `doc.save()` when it must.
+   - **Dropping a removed field's column with `trim_table`:** clear the local column list first, with
+     `frappe.client_cache.delete_value(f"table_columns::tab{doctype}")`. `trim_table` clears it through
+     `frappe.cache`, leaving the process's own copy to a background thread, so a second trim of the table in the
+     same migrate can fail now and then with `Can't DROP COLUMN` (MariaDB 1091). Checked on v16.55:
+     `frappe/model/meta.py: trim_table`, `frappe/utils/redis_wrapper.py: ClientCache`. Keep the two lines in one
+     helper when more than one patch needs them.
    - Reload a DocType the patch reads with its new schema in `pre_model_sync`:
      `frappe.reload_doc("<module>", "doctype", "<doctype>")`.
 2. **Register** it in `<app>/<app>/patches.txt` under the right section
