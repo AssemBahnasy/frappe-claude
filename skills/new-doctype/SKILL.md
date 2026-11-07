@@ -61,6 +61,11 @@ cd <bench>/sites && ../env/bin/python <scratchpad>/create_doctype.py
 
 Child tables: `"istable": 1`, no permissions. Settings: `"issingle": 1`.
 
+**Check the `permissions` in the generated JSON.** A script's `doc.insert()` fills every permission
+field with DocPerm's default, so a row written as `{"role": "X", "select": 1}` comes out with read,
+write, create, delete, report, export, share, print and email too. Correct the JSON by hand, bump `modified`, and test that the role
+can't write. Checked on v16.55: a `select`-only row in the JSON stays select-only on migrate.
+
 ## 3. Fill in the generated files
 
 In `<app>/<app>/<module_folder>/doctype/<doctype>/`:
