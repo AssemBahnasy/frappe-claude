@@ -61,6 +61,10 @@ cd <bench>/sites && ../env/bin/python <scratchpad>/create_doctype.py
 
 Child tables: `"istable": 1`, no permissions. Settings: `"issingle": 1`.
 
+A **Vue Component** field (16.60+) names an island in `options`. Build the island first: saving
+the DocType throws "Island … is not on this site" otherwise (`doctype.py:
+check_vue_component_options`). See `/frappe-vue` island-fields.md.
+
 **Check the `permissions` in the generated JSON.** A script's `doc.insert()` fills every permission
 field with DocPerm's default, so a row written as `{"role": "X", "select": 1}` comes out with read,
 write, create, delete, report, export, share, print and email too. Correct the JSON by hand, bump `modified`, and test that the role

@@ -32,6 +32,11 @@ You do not edit files.
    - user-facing strings without `_()` / `__()`, or `.po` entries left empty;
    - form scripts with module-level state or functions;
    - behaviour changed without a test, or without docs in the app's `docs/`;
+   - Vue in desk that breaks `~/.claude/skills/frappe-vue/` (SKILL.md, pitfalls.md, and on
+     16.60+ islands.md): no teardown or render token on a classic host; an island that POSTs
+     through frappe-ui instead of `frappe.xcall`, uses desk controls or `rtl:` classes inside
+     its shadow root, or writes to the form from a Vue Component field; a new
+     `frappe.Chart` / `frappe.utils.make_chart` call instead of `frappe.ui.chart`;
    - any change inside `apps/frappe`.
 4. Verify every mechanism you question in `<bench>/apps/frappe` before reporting it.
 

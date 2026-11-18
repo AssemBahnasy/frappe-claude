@@ -89,7 +89,10 @@ frappe's (`esbuild/esbuild.js` NODE_PATHS). Frappe ships `vue`, `pinia`,
 `@vueuse/core`, `@vue-flow/core`, `@vue-flow/background`, `vuedraggable`,
 `sortablejs`, `@headlessui/vue`, `frappe-charts` and `frappe-datatable`.
 **Fix:** import those directly. Add other packages to the **app-root**
-`package.json`, then run `yarn` at the app root.
+`package.json`, then run `yarn` at the app root. For charts call `frappe.ui.chart(el, config)`
+instead of `frappe.Chart` / `frappe.utils.make_chart`, which warn as deprecated since 16.60.
+It takes the same frappe-charts config, returns `{ update, destroy, ready }`, and draws
+frappe-charts only while System Settings "Use Classic Charts" is on.
 
 ### 15. A Frappe-provided library is suddenly undefined
 **Symptom:** after a Frappe upgrade, e.g. `L.map is not a function` / `L is not defined`.

@@ -319,12 +319,14 @@ Keep components presentational; put load/save/mutation logic in the store.
 
 ## 5. Sidebar + breadcrumb (v16 desk)
 
-Nothing to add. Checked in Frappe v16.54 and on `develop`:
+Nothing to add. Checked in Frappe 16.60.1:
 
 - **Sidebar:** the resolver reads a Page route's first segment as the entity, since every
   Page is in `frappe.boot.page_info` (`ui/sidebar/sidebar.js → entity_from_route`). So
   `{page-name}/<name>` opens in the Workspace Sidebar that lists the page (an item with
   `link_type: Page`, `link_to: {page-name}`) and stays there when the record changes.
+  Two Page checkboxes change that (16.60): **System Page** opens with no sidebar, and
+  **Shared Page** opens in whichever sidebar is on screen (`router.js: page_info_for`).
 - **Breadcrumb:** the trail belongs to the page object (`ui/page.js → set_breadcrumbs`).
   Frappe sets it to the page title once, right after `on_page_load` (`views/pageview.js`),
   so it survives record switches.

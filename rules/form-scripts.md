@@ -37,8 +37,11 @@ writing or reviewing Vue code. In short:
 - Styling uses Frappe's CSS variables and logical properties (`inset-inline-start`,
   `padding-inline`), so dark mode and right to left work without extra code.
 - Use the packages Frappe already bundles (`vue`, `pinia`, `@vueuse/core`, `@vue-flow/core`,
-  `vuedraggable`, `sortablejs`, `frappe-charts`) before adding one.
+  `vuedraggable`, `sortablejs`) before adding one. Charts: `frappe.ui.chart`.
 - After changing bundles: `bench build --app <app>`.
+- On 16.60+ a read-only dashboard page or form summary can be an island instead (Page type
+  Frappe UI, Vue Component field): `/frappe-vue` islands.md. Islands write through
+  `frappe.xcall`, never a frappe-ui POST.
 
 A checkbox grid for assigning many items, with reusable bundles ("profiles", like Role and Role
 Profile), follows `/frappe-multiselect-checkbox-editor`.

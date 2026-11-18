@@ -26,6 +26,17 @@ Mockup the structure first (which dock buttons, which sidebar lists what) and ge
   first sidebar.
 - A sidebar's title gives its URL, and sidebar and module names share those routes
   (`public/js/frappe/router.js`), so don't name a sidebar after another module.
+- Pages (16.60+): a Page with **System Page** set opens with no sidebar and is left out of the
+  module's sidebar items; one with **Shared Page** set opens in whichever sidebar is on screen
+  (for pages that act on a document from anywhere, such as Print). A page cannot be both
+  (`page.py: validate_shell`). Before 16.60 `system_page` did nothing, and many app pages carry
+  `"system_page": 1`; on 16.60 they open in whichever sidebar came before. Keep it `0` on an
+  app's pages (Frappe sets it only on Desktop, Setup Wizard, Profile, Search, Notifications;
+  ERPNext on none): find them with `grep -rl '"system_page": 1' <app> --include=*.json`, set
+  `0`, bump `modified`, migrate.
+- A sidebar item linking a Page may carry a `route`: a relative path inside that page
+  (`<page>/<route>`), no query or fragment (`sidebar.py: validate_item_route`). Two items linking
+  one page are told apart by it.
 - A module left out of the dock has no button on the rail.
 - Recommended: each sidebar opens on a workspace of the same name, which repeats its top links
   as shortcuts and has one card per sidebar section.
