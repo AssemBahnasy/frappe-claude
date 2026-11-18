@@ -7,8 +7,9 @@
   meaning, a link between two apps, or a new screen is proposed first (fields table or
   mockup) and built only once approved.
 - **UI needs an approved mockup** before any implementation code ([ui.md](ui.md)).
-- **Verify in Frappe's source** before relying on any hook, desk API or DocType behaviour, and
-  cite the file or function in the docs (`/frappe-source`).
+- **Look up how Frappe does it now** before any build, creation or customisation: official docs,
+  the bench's Frappe after checking its version, then official apps at a matching version
+  ([frappe-way.md](frappe-way.md), `/frappe-source`). Cite the file or function in the docs.
 - **Docs ship with the change** in the app's `docs/` folder ([docs.md](docs.md)). A change is not
   done until its docs say what it does now.
 - **Tests ship with the change** ([testing.md](testing.md)).

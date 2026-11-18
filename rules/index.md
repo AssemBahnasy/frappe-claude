@@ -26,8 +26,10 @@ from these rules, the project wins.** If a project has none, ask for what the ta
 
 ## The rules that matter most
 
-- **Frappe's way.** Follow the layout and style of Frappe, ERPNext, HRMS and CRM; check every
-  mechanism in Frappe's source before relying on it.
+- **Frappe's way.** Follow the layout and style of Frappe, ERPNext, HRMS and CRM. Before any
+  build, creation or customisation, look up how Frappe does it now: official docs, the bench's
+  Frappe (check its version against the latest release), then official apps at a matching
+  version, on the bench or on GitHub.
 - **Propose, then build.** New DocTypes, cross-app links and screens are proposed (fields table,
   the form's layout, or mockup) and approved first.
 - **Forms are designed.** Check how Frappe's apps lay out similar DocTypes; organise fields into
@@ -51,7 +53,7 @@ from these rules, the project wins.** If a project has none, ask for what the ta
 | File | Covers | Loads |
 |---|---|---|
 | [workflow.md](workflow.md) | How work is done, when to stop and ask | always |
-| [frappe-way.md](frappe-way.md) | The bench you are on, reusing Frappe, v16 differences | always |
+| [frappe-way.md](frappe-way.md) | Where to look up how Frappe does it now, the bench you are on, reusing Frappe, global names, v16 differences | always |
 | [architecture.md](architecture.md) | Separation of concerns and DRY | always |
 | [translations.md](translations.md) | `_()`/`__()`, `.po` files, right to left | always |
 | [ui.md](ui.md) | Mockups first, desk components, dark mode, RTL | always |

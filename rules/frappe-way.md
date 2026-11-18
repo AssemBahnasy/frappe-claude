@@ -3,14 +3,33 @@
 The rules come from Frappe's own apps (Frappe, ERPNext, HRMS, CRM, Helpdesk). When a rule here is
 unclear, do what those apps do.
 
+## Look up how Frappe does it now
+
+Before building, creating or customising anything (a DocType, page, hook, report, desk UI,
+build step), find how Frappe does it today. Never from memory. In this order (how:
+`/frappe-source`):
+
+1. **Frappe's official docs and wiki** (docs.frappe.io, github.com/frappe/frappe/wiki, and the
+   docs inside the repo such as `hooks.md`, `ui/README.md`): what the feature is and how it is
+   meant to be used.
+2. **The Frappe app on the bench**, the code that will run. Check its version first (branch,
+   `__version__`) and compare it with the latest official release: the bench can be behind the
+   docs. Where they disagree, the bench decides what can be used here; say the bench is behind
+   instead of using a feature it lacks.
+3. **Official apps** (ERPNext, HRMS, CRM, Helpdesk, Insights, LMS, Builder, ...): how the Frappe
+   team uses that mechanism. Use the bench copy, or GitHub at the branch matching the bench's
+   Frappe when the app is not installed. Check each one's version and the Frappe range in its
+   `pyproject.toml` (`[tool.bench.frappe-dependencies]`): an app built for an older Frappe shows
+   an older way.
+
+Say which sources you checked and at which versions, and cite them in the docs you write.
+Official apps are read for patterns only: never import from or edit them, and respect their
+licences (ERPNext and HRMS are GPL-3.0).
+
 ## The bench you are on
 
-- Check the bench's Frappe version before relying on anything version-specific:
-  `git -C <bench>/apps/frappe branch --show-current`. The benches differ.
 - Check which apps are there: `<bench>/sites/apps.txt`, `bench --site <site> list-apps`. Link to
   or import from an app only if this project requires it; a project's rules say what it may use.
-- Read other apps for *patterns*: reference copies of ERPNext, HRMS, CRM and earlier custom apps
-  are in `~/frappe-bench/apps` (read only). Respect their licences: ERPNext and HRMS are GPL-3.0.
 
 ## Reuse Frappe before writing code
 
@@ -22,7 +41,8 @@ unclear, do what those apps do.
 | Naming | `autoname` / naming series / `naming_rule` in the DocType JSON |
 | States and approvals | Workflow DocType, `is_submittable`, `docstatus` |
 | Status colours | `get_indicator` / list view settings, from the DocType's states |
-| Dialogs, toasts, charts | `frappe.ui.Dialog`, `frappe.ui.toast`, `frappe.utils.make_chart` |
+| Dialogs, toasts, charts | `frappe.ui.Dialog`, `frappe.ui.toast`, `frappe.ui.chart` (16.60+; `make_chart` before) |
+| Vue in desk | `/frappe-vue`: classic hosts; on 16.60+ islands (Page type Frappe UI, Vue Component field) |
 | Querying | `frappe.qb` or `frappe.get_list`/`get_all`; raw SQL only with a reason |
 | Permissions | Role permissions in the DocType, `has_permission` / `permission_query_conditions` hooks |
 
@@ -31,7 +51,7 @@ unclear, do what those apps do.
 Anything that touches a global validation (a name that must be unique across the bench or the
 site) is checked in Frappe's source before it is chosen, never assumed. Frappe rarely refuses a
 clash; usually one side silently wins. Check a new name against the apps on the bench and the
-site. Verified on v16.54:
+site. Verified on v16.54, re-checked on 16.60.1:
 
 | Name | Unique across | On a clash |
 |---|---|---|
@@ -41,7 +61,8 @@ site. Verified on v16.54:
 | Role | The site | No error: the apps share it. A role a DocType names is created with `desk_access = 1` if missing (`doctype.py: make_module_and_roles`), so whichever app creates it first decides |
 | `www/` page path | The site | No error: the app installed last wins (`website/page_renderers/template_page.py: set_template_path`) |
 | `website_route_rules` route | The site | No error: Werkzeug picks one (`website/router.py: evaluate_dynamic_routes`); never rely on which |
-| Bundle file name | The bench, across all its sites (`sites/assets/assets.json`) | No error: the later entry overwrites (`esbuild/esbuild.js: update_assets_obj`). Name them `<app>_<feature>.bundle.js` |
+| Bundle file name | The bench, across all its sites (`sites/assets/assets.json`) | No error: the later entry overwrites (`esbuild/esbuild.js: update_assets_obj`, `esbuild/assets_json.js`). Name them `<app>_<feature>.bundle.js` |
+| Island name (16.60+) | The bench (`assets.json` key `<name>.island.js`) | Two builds writing one key fail the island build (`ui/vite/island/assets.js: writeIslandAssets`); two pages claiming one page-island name fail the page-island build (`ui/vite/island/pages.js`). Name them `<app>.<feature>` |
 
 For any other global name, find where Frappe validates it and cite that function.
 
