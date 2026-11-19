@@ -35,7 +35,7 @@ Include this outline in the reply, so the user sees the split.
 1. Read the app: `hooks.py`, `modules.txt`, every DocType JSON (`find <app> -name '*.json' -path
    '*doctype*'`), `api/`, `utils/`, `public/js/`.
 2. Create, from the templates: `docs/README.md`, `architecture/separation-of-concerns.md`,
-   `architecture/code-organization.md`, `architecture/data-flow.md`, `doctypes/README.md`,
+   `architecture/contracts.md`, `architecture/code-organization.md`, `architecture/data-flow.md`, `doctypes/README.md`,
    `setup/README.md`, `tests/README.md`. Leave out folders the app has nothing for yet.
 3. For a freshly scaffolded app, write only what is true now: the app's purpose (its
    `hooks.py` description), what it owns per the project's rules, and empty tables with their

@@ -85,6 +85,6 @@ In `<app>/<app>/<module_folder>/doctype/<doctype>/`:
 - `/bench-verify <app> "<DocType>"` (migrate, tests, open the form in each language).
 - New strings → `/translations <app>`.
 - Document it with `/app-docs <app> doctype "<DocType>"`: its doc in the feature folder, a row in
-  `docs/doctypes/README.md`, and any cross-app link in `docs/architecture/separation-of-concerns.md`.
+  `docs/doctypes/README.md`, and any cross-app link in `docs/architecture/contracts.md`.
 - Add it to the app's sidebar/workspace if users need it (`/app-navigation`).
 - Stop for review.

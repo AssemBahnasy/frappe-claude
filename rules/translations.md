@@ -4,6 +4,10 @@
   JavaScript and Vue. DocType labels and descriptions are picked up from the JSON.
 - Wrap whole sentences with placeholders, never concatenated pieces:
   `_("Trip {0} is closed").format(name)`, `__("Trip {0} is closed", [name])`.
+- Keep a `__()` call's arguments on one line: build the list first (`const args = [...]`). When prettier
+  splits it over lines with a trailing comma, Frappe's extractor reads a third, "context" argument and the
+  string silently leaves `main.pot` and its `.po` translation (checked on 16.60.1). The same for a regex
+  literal just before a call.
 - Each language the project ships is `<app>/locale/<lang>.po` (gettext, like Frappe, ERPNext and
   HRMS; the old `translations/<lang>.csv` format is not used); `locale/main.pot` lists every
   string. Update them with `/translations`. The languages are stated in the project's rules.

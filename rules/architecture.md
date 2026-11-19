@@ -61,7 +61,7 @@ Each app owns its DocTypes; the ownership table is in the project's own rules.
 
 - **Contracts, not reach-ins.** An app uses another's data only through Link fields and the
   owning app's documented functions. Each contract is a row in the dependent app's
-  `docs/architecture/separation-of-concerns.md`.
+  `docs/architecture/contracts.md`.
 - **Read upstream, write only your own.** A downstream app reads upstream records and never
   writes them directly. When it must change one (an operation updating a container's status),
   it calls the owning app's function or creates the owning app's document.

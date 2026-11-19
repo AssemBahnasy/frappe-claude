@@ -19,7 +19,7 @@ Requires Frappe <version> <and any required app>.
 
 | Folder | Read it to |
 |---|---|
-| [architecture/](architecture/separation-of-concerns.md) | Know what the app owns, its layers, its contracts with other apps |
+| [architecture/](architecture/separation-of-concerns.md) | Know what the app owns and its layers; its contracts with other apps ([contracts.md](architecture/contracts.md)) |
 | [doctypes/](doctypes/README.md) | See every DocType and how they relate |
 | [<feature>/](<feature>/README.md) | <Change or explain one feature> |
 | [api/](api/README.md) | Call the whitelisted endpoints |
@@ -58,13 +58,28 @@ Requires Frappe <version> <and any required app>.
 
 ## Contracts with other apps
 
-| From (this app) | To (app · DocType or function) | Contract |
-|---|---|---|
-| <Service Visit.vehicle> | <core app> · Vehicle | Link, read only |
+Every Link, function and hook this app uses of another app: [contracts.md](contracts.md).
 
 ## Invariants
 
 1. <This app never writes to ... ; it changes ... only through ...>
+````
+
+## architecture/contracts.md
+
+A file of its own: it grows a row with every cross-app link or import, which would push
+separation-of-concerns.md past the size limit.
+
+````markdown
+# Contracts with other apps
+
+What this app uses of each other app, and how: a Link, a function or a hook. One row per contract; a new import
+or link adds its row ([separation-of-concerns.md](separation-of-concerns.md)).
+
+| Uses (app) | What | Contract |
+|---|---|---|
+| <core app> | <Vehicle> | Link, read only |
+| <core app> | <utils.vehicles.check_capacity> | Function: <what for> |
 ````
 
 ## architecture/code-organization.md

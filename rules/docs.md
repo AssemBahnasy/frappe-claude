@@ -11,7 +11,8 @@ reorganise them with `/app-docs`, whose templates are in
 docs/
 ├── README.md                     the index: what the app does, a table of every doc
 ├── architecture/
-│   ├── separation-of-concerns.md what the app owns / does not own, its layers, contracts with other apps, invariants
+│   ├── separation-of-concerns.md what the app owns / does not own, its layers, invariants
+│   ├── contracts.md              its contracts with other apps: every Link, function and hook it uses of another app
 │   ├── code-organization.md      the shared homes (utils/, public/js/utils/) and what each file holds
 │   └── data-flow.md              how a record moves through the app and the suite
 ├── doctypes/README.md            every DocType: kind, naming, one line, link to its doc
@@ -51,7 +52,7 @@ file. The user should never have to ask for this.
 | New or changed DocType | its doc in the feature folder (template "DocType"), `doctypes/README.md` |
 | New business rule | the "Rules" table of the DocType or feature doc, with the function that enforces it |
 | New shared helper | `architecture/code-organization.md` |
-| New cross-app link or import | the contract table in `architecture/separation-of-concerns.md`, and the project's agreed table of links, if it has one |
+| New cross-app link or import | the contract table in `architecture/contracts.md`, and the project's agreed table of links, if it has one |
 | New endpoint | `api/<concern>.md` |
 | New setting, role or permission | `setup/` |
 | New dock, sidebar, workspace or icon | `navigation/README.md` |
