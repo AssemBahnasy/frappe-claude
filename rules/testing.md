@@ -21,6 +21,11 @@
 
 - Lint the changed files: `ruff check <files> && ruff format <files>`; `pre-commit run --files
   <files>` inside the app repo runs the same checks as CI.
+- Every app's `.pre-commit-config.yaml` pins its hooks' Node: `default_language_version: {node: lts}`, added
+  to a new app's file too (`bench new-app` leaves it out). Without it pre-commit skips a Node installed in the
+  home folder (nvm; `pre_commit/lang_base.py: exe_exists`) and has nodeenv download the newest release, which
+  broke prettier and eslint when that was an alpha (`27.0.0-alpha`, 2026-11-25). With `lts` it takes the
+  current LTS release, on every machine and in CI.
 - CI (`.github/workflows/ci.yml`) installs the app on a fresh site and runs its tests; it does
   not install other apps unless the workflow says so. When an app gains `required_apps`,
   update its CI to get those apps too.
